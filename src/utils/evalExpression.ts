@@ -1,11 +1,15 @@
+import * as templateFunctions from './templateFunctions'
+
 interface EvalExpressionParams {
   expression: string
   variables?: Record<string, any>
+  currentVariant?: string
 }
 
 export const evalExpression = ({
   expression = '',
-  variables = {}
+  variables = {},
+  currentVariant
 }: EvalExpressionParams) => {
   try {
     // Helper function to extract variables from the condition
@@ -36,6 +40,20 @@ export const evalExpression = ({
         fullVarsContext[variable] = variables[variable]
       } else {
         continue // If not, skip
+      }
+    }
+
+    // Add template functions to the context, currying them with currentVariant
+    for (const [key, value] of Object.entries(templateFunctions)) {
+      if (typeof value === 'function') {
+        // Para funciones que retornan funciones (como withVariant), las aplicamos parcialmente
+        fullVarsContext[key] = (...args: any[]) => {
+          const result = (value as any)(...args)
+          // Si el resultado es una función, la llamamos con currentVariant
+          return typeof result === 'function' ? result(currentVariant) : result
+        }
+      } else {
+        fullVarsContext[key] = value
       }
     }
 
