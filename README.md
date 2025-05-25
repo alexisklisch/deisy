@@ -5,7 +5,7 @@ A powerful and extensible tool to parse XML/JSX-like templates, inject variables
 ## To do
 
 ### 0.0.1
-- [ ] Project structure
+- [X] Project structure
 - [ ] Timer for tests
 - [ ] Expression resolver
 - [ ] Tests
