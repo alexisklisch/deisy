@@ -1,0 +1,10 @@
+{
+  "name": "daisy",
+  "version": "0.0.0",
+  "description": "A powerful and extensible tool to parse XML/JSX-like templates, inject variables, apply conditions, and manipulate document structure. Perfect for SVG magic ✨ — and who knows what else you’ll build! 🔌🧩",
+  "main": "index.js",
+  "keywords": ["XML", "JSX", "Parser", "Transformer", "SVG"],
+  "author": "Alexis Fleitas Klisch",
+  "license": "MIT",
+  "packageManager": "pnpm@10.8.1"
+}
