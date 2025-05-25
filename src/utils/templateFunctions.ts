@@ -1,27 +1,45 @@
-// Función para manejar variantes de forma sencilla pero poderosa
-export const withVariant = (
-  attributes: Record<string, any>,
-  defaultValue?: any
-) => {
-  // Retorna una función que puede ser llamada con el currentVariant
-  return (currentVariant?: string) => {
-    if (!currentVariant) return defaultValue
-    return attributes[currentVariant] ?? defaultValue
+// Objeto Variant que agrupa todas las funciones relacionadas con variantes
+export const Variant = {
+  // Función principal para asignar valores basados en variante
+  assign: (
+    attributes: Record<string, any>,
+    defaultValue?: any
+  ) => {
+    return (currentVariant?: string) => {
+      if (!currentVariant) return defaultValue
+      return attributes[currentVariant] ?? defaultValue
+    }
+  },
+
+  // Verificar si una variante específica está activa
+  is: (targetVariant: string) => {
+    return (currentVariant?: string) => currentVariant === targetVariant
+  },
+
+  // Obtener múltiples valores basados en variante
+  values: (
+    variantMap: Record<string, Record<string, any>>,
+    defaultValues: Record<string, any> = {}
+  ) => {
+    return (currentVariant?: string) => {
+      if (!currentVariant) return defaultValues
+      return { ...defaultValues, ...variantMap[currentVariant] }
+    }
+  },
+
+  // Función para verificar si alguna de las variantes está activa
+  isAny: (targetVariants: string[]) => {
+    return (currentVariant?: string) =>
+      currentVariant ? targetVariants.includes(currentVariant) : false
+  },
+
+  // Función para obtener la variante actual o un valor por defecto
+  current: (defaultVariant: string = 'default') => {
+    return (currentVariant?: string) => currentVariant || defaultVariant
   }
 }
 
-// Función auxiliar para casos simples donde solo necesitas verificar si una variante está activa
-export const isVariant = (targetVariant: string) => {
-  return (currentVariant?: string) => currentVariant === targetVariant
-}
-
-// Función para obtener múltiples valores basados en variante
-export const variantValues = (
-  variantMap: Record<string, Record<string, any>>,
-  defaultValues: Record<string, any> = {}
-) => {
-  return (currentVariant?: string) => {
-    if (!currentVariant) return defaultValues
-    return { ...defaultValues, ...variantMap[currentVariant] }
-  }
-}
+// Mantenemos las funciones originales para compatibilidad hacia atrás
+export const withVariant = Variant.assign
+export const isVariant = Variant.is
+export const variantValues = Variant.values

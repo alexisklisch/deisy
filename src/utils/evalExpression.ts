@@ -52,6 +52,20 @@ export const evalExpression = ({
           // Si el resultado es una función, la llamamos con currentVariant
           return typeof result === 'function' ? result(currentVariant) : result
         }
+      } else if (typeof value === 'object' && value !== null) {
+        // Para objetos como Variant, procesamos cada método
+        const processedObject: Record<string, any> = {}
+        for (const [objKey, objValue] of Object.entries(value)) {
+          if (typeof objValue === 'function') {
+            processedObject[objKey] = (...args: any[]) => {
+              const result = (objValue as any)(...args)
+              return typeof result === 'function' ? result(currentVariant) : result
+            }
+          } else {
+            processedObject[objKey] = objValue
+          }
+        }
+        fullVarsContext[key] = processedObject
       } else {
         fullVarsContext[key] = value
       }
