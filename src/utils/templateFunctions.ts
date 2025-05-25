@@ -38,8 +38,3 @@ export const Variant = {
     return (currentVariant?: string) => currentVariant || defaultVariant
   }
 }
-
-// Mantenemos las funciones originales para compatibilidad hacia atrás
-export const withVariant = Variant.assign
-export const isVariant = Variant.is
-export const variantValues = Variant.values
