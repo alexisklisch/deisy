@@ -1,3 +1,4 @@
-const a = 1
+import { evalExpression } from '@/utils/evalExpression'
 
-console.log(a)
+console.log(evalExpression({ expression: '1 + 1' }))
+console.log('Hola')
