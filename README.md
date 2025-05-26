@@ -10,9 +10,9 @@ A powerful and extensible tool to parse XML/JSX-like templates, inject variables
 - [X] Tests
 - [X] XML/JSX parser
 - [X] XML/JSX builder
-- [ ] Recursive XML/JSX
+- [X] Recursive XML/JSX
 - [X] Variables injection
-- [ ] Publish to npm
+- [X] Publish to npm
 
 ### 0.0.2
 - [ ] Conditions
