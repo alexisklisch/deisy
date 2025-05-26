@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "baseUrl": "..",
+    "rootDir": "..",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "declaration": true,
+    "declarationDir": "../dist/types",
+    "emitDeclarationOnly": true,
+    "outDir": "../dist",
+    "esModuleInterop": true,
+    "strict": true
+  },
+  "include": ["./**/*.ts", "../src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

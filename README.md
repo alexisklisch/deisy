@@ -8,10 +8,11 @@ A powerful and extensible tool to parse XML/JSX-like templates, inject variables
 - [X] Project structure
 - [ ] Timer for tests
 - [X] Expression resolver
-- [ ] Tests
+- [X] Tests
 - [X] XML/JSX parser
 - [X] XML/JSX builder
-- [ ] Variables injection
+- [ ] Recursive XML/JSX
+- [X] Variables injection
 - [ ] Publish to npm
 
 ### 0.0.2
