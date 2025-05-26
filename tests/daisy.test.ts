@@ -1,17 +1,17 @@
 import { describe, it, expect } from 'vitest'
-import Daisy from '../src'
+import Deisy from '../src'
 
-describe('Daisy: exists', () => {
+describe('Deisy: exists', () => {
   it('should be defined', () => {
-    expect(Daisy).toBeDefined()
+    expect(Deisy).toBeDefined()
   })
 
   it('should have a constructor', () => {
-    expect(Daisy.prototype.constructor).toBeDefined()
+    expect(Deisy.prototype.constructor).toBeDefined()
   })
 })
 
-describe('Daisy: basic', () => {
+describe('Deisy: basic', () => {
   const xml1 = `
 <xml>
   <dsy-variants content={["default", "mobile"]}/>
@@ -25,7 +25,7 @@ describe('Daisy: basic', () => {
 </xml>`
 
   it('should be defined', () => {
-    const dsy = new Daisy(xml1, { variables: {} })
+    const dsy = new Deisy(xml1, { variables: {} })
     const exported = dsy.export({ format: 'json', variant: 'default' })
     console.log(JSON.stringify(exported, null, 2))
     expect(dsy).toBeDefined()

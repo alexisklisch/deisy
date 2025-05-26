@@ -1,9 +1,9 @@
 import { ExpressionNode, parser } from '@/utils/parser'
 import { tagRegex } from '@/utils/regex'
 import { evalExpression } from '@/utils/evalExpression'
-import type { DaisyConfig, VariablesContext } from '@/types'
+import type { DeisyConfig, VariablesContext } from '@/types'
 
-export function assignInitialVars (initialSource: string, config: DaisyConfig, currentVariant: string | undefined) {
+export function assignInitialVars (initialSource: string, config: DeisyConfig, currentVariant: string | undefined) {
   let currentSource = initialSource
   const newContext: VariablesContext = { template: {}, user: {}, metadata: {} }
 

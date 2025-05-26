@@ -1,7 +1,7 @@
 import { getVariants, removeComments } from '@/utils/fromText'
 import { assignInitialVars } from './utils/initialContext'
 import type {
-  DaisyConfig,
+  DeisyConfig,
   ExportOptions,
   VariablesContext,
   Variant
@@ -9,12 +9,12 @@ import type {
 import { parser } from './utils/parser'
 import { recursiveVariant } from './funct/recursiveVariant'
 
-class Daisy {
+class Deisy {
   #currentSrc: string = ''
   #variants: Variant[] = []
   #context: VariablesContext = { template: {}, user: {}, metadata: {} }
 
-  constructor (private readonly dsySrc: string, private readonly config: DaisyConfig) {
+  constructor (private readonly dsySrc: string, private readonly config: DeisyConfig) {
     this.#currentSrc = removeComments(dsySrc) // Remove comments
     this.#variants = getVariants(this.#currentSrc) // Extract variants
 
@@ -69,4 +69,4 @@ class Daisy {
   }
 }
 
-export default Daisy
+export default Deisy

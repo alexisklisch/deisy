@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import Daisy from '../src/index'
+import Deisy from '../src/index'
 
 describe('context: user', () => {
   it('should return the correct value', () => {
-    const daisy = new Daisy('<d></d>', {
+    const deisy = new Deisy('<d></d>', {
       variables: {
         user: {
           name: 'Pedro'
@@ -11,6 +11,6 @@ describe('context: user', () => {
       }
     })
 
-    expect(daisy.config.variables.user.name).toBe('Pedro')
+    expect(deisy.config.variables.user.name).toBe('Pedro')
   })
 })

@@ -1,4 +1,4 @@
-# Daisy
+# Deisy
 
 A powerful and extensible tool to parse XML/JSX-like templates, inject variables, apply conditions, and manipulate document structure. Perfect for SVG magic ✨ — and who knows what else you’ll build! 🔌🧩
 

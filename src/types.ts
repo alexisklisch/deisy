@@ -1,4 +1,4 @@
-export interface DaisyConfig {
+export interface DeisyConfig {
   variables: Record<string, any>
 }
 
@@ -6,7 +6,7 @@ export type Variant = string | undefined
 
 export interface VariablesContext {
   template: Record<string, any>
-  user: DaisyConfig['variables']
+  user: DeisyConfig['variables']
   metadata: Record<string, any>
 }
 
