@@ -15,7 +15,12 @@ class Deisy {
   #variants: Variant[] = []
   #context: VariablesContext = { template: {}, user: {}, metadata: {} }
 
-  constructor (private readonly dsySrc: string, private readonly config: DeisyConfig = { variables: {} }) {
+  constructor (
+    private readonly dsySrc: string,
+    private readonly config: DeisyConfig = {
+      variables: {},
+      plugins: []
+    }) {
     this.#currentSrc = removeComments(dsySrc) // Remove comments
     this.#variants = getVariants(this.#currentSrc) // Extract variants
     // Remove variants tag
@@ -60,7 +65,8 @@ class Deisy {
         parentNode: undefined,
         currentNodeIndex: undefined,
         variablesContext: this.#context,
-        currentVariant: variant
+        currentVariant: variant,
+        plugins: this.config.plugins || []
       })
 
       return format === 'json' ? sourceParsed : parser.build([sourceParsed])

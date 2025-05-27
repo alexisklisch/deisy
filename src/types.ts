@@ -1,5 +1,8 @@
+import type { Plugin } from '@/plugins'
+
 export interface DeisyConfig {
   variables: Record<string, any>
+  plugins?: Plugin[]
 }
 
 export type Variant = string | undefined

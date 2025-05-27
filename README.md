@@ -4,7 +4,9 @@ A powerful and extensible tool to parse XML/JSX-like templates, inject variables
 
 ## To do
 
-### 0.0.1
+### 0.1.0
+
+#### Lvl 1
 - [X] Project structure
 - [X] Expression resolver
 - [X] Tests
@@ -14,8 +16,12 @@ A powerful and extensible tool to parse XML/JSX-like templates, inject variables
 - [X] Variables injection
 - [X] Publish to npm
 
-### 0.0.2
+#### Lvl 2
+- [X] Plugin system
 - [ ] Conditions
 - [ ] Website with examples
 - [ ] Timer for tests
 - [ ] Add documentation to website
+
+### 0.2.0
+- [ ] Text renderer plugin

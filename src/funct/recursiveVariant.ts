@@ -1,6 +1,8 @@
 import type { VariablesContext, Variant } from '@/types'
 import { evalExpression } from '@/utils/evalExpression'
 import type { ExpressionNode, Node, TagNode } from '@/utils/parser'
+import type { Plugin } from '@/plugins'
+import { parser } from '@/utils/parser'
 
 interface RecursiveVariant {
   currentNode: Node
@@ -8,6 +10,7 @@ interface RecursiveVariant {
   currentNodeIndex?: number
   variablesContext: VariablesContext
   currentVariant: Variant
+  plugins: Plugin[]
 }
 
 export const recursiveVariant = ({
@@ -15,8 +18,32 @@ export const recursiveVariant = ({
   parentNode,
   currentNodeIndex,
   currentVariant,
-  variablesContext
+  variablesContext,
+  plugins
 }: RecursiveVariant) => {
+  // Procesar plugins primero
+  if (parentNode && currentNodeIndex !== undefined) {
+    for (const plugin of plugins) {
+      const result = plugin.onNode(currentNode, {
+        variablesContext,
+        currentVariant,
+        variants: [currentVariant], // TODO: Pasar todas las variantes disponibles
+        parser
+      })
+
+      if (result === undefined) {
+        // Eliminar el nodo
+        parentNode.child.splice(currentNodeIndex, 1)
+        return
+      } else if (result !== null) {
+        // Reemplazar el nodo
+        parentNode.child[currentNodeIndex] = result
+        currentNode = result
+      }
+      // Si es null, continuar con el siguiente plugin sin modificar nada
+    }
+  }
+
   if (typeof currentNode === 'object') {
     if (currentNode.type === 'tag') {
       const elementAttrs: Record<string, string | ExpressionNode> = currentNode?.attr || {}
@@ -38,7 +65,8 @@ export const recursiveVariant = ({
           parentNode: currentNode,
           currentNodeIndex: +key,
           variablesContext,
-          currentVariant
+          currentVariant,
+          plugins
         })
       }
 
@@ -64,7 +92,8 @@ export const recursiveVariant = ({
         parentNode,
         currentNodeIndex: currentNodeIndex!,
         variablesContext,
-        currentVariant
+        currentVariant,
+        plugins
       })
     }
   }
