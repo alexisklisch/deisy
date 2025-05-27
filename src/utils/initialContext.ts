@@ -7,11 +7,11 @@ export function assignInitialVars (initialSource: string, config: DeisyConfig, c
   let currentSource = initialSource
   const newContext: VariablesContext = { template: {}, user: {}, metadata: {} }
 
-  // 1. Asignar variables del usuario
+  // 1. Asignar variables del usuario primero
   const { variables } = config
-  newContext.user = variables
+  newContext.user = variables || {}
 
-  // Definir los tipos de tags y sus mapeos correspondientes
+  // 2. Definir los tipos de tags y sus mapeos correspondientes
   const tags = ['variables', 'metadata']
   type TagType = typeof tags[number]
   const tagToVarMap: Record<TagType, keyof typeof newContext> = {
@@ -19,7 +19,7 @@ export function assignInitialVars (initialSource: string, config: DeisyConfig, c
     metadata: 'metadata'
   }
 
-  // Procesar cada tipo de tag
+  // 3. Procesar cada tipo de tag con el contexto completo
   tags.forEach(tag => {
     const regex = tagRegex(`dsy-${tag}`)
     const match = currentSource.match(regex)
@@ -29,7 +29,12 @@ export function assignInitialVars (initialSource: string, config: DeisyConfig, c
       if (parsed.type === 'tag') {
         const expression = parsed.attr.content as ExpressionNode
         if (expression.content) {
-          const expressionResolved = evalExpression({ expression: expression.content, currentVariant })
+          // Evaluar la expresión con el contexto completo
+          const expressionResolved = evalExpression({
+            expression: expression.content,
+            variables: newContext, // Pasar el contexto completo
+            currentVariant
+          })
           newContext[tagToVarMap[tag]] = expressionResolved
         }
       }

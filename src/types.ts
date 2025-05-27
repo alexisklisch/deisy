@@ -11,6 +11,6 @@ export interface VariablesContext {
 }
 
 export interface ExportOptions {
-  format: 'xml' | 'json'
-  variants: Variant | Variant[]
+  format?: 'xml' | 'json'
+  variants?: Variant | Variant[]
 }
