@@ -9,7 +9,7 @@ export function assignInitialVars (initialSource: string, config: DeisyConfig, c
 
   // 1. Asignar variables del usuario
   const { variables } = config
-  newContext.user = variables || {}
+  newContext.user = variables
 
   // Definir los tipos de tags y sus mapeos correspondientes
   const tags = ['variables', 'metadata']
