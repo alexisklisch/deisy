@@ -1,7 +1,7 @@
 import { evalExpression } from '@/utils/evalExpression'
 import { tagRegex } from '@/utils/regex'
 import { parser, type ExpressionNode } from '@/utils/parser'
-import type { Variant } from '@/types'
+import type { Variant } from '@/deisyTypes'
 
 export const removeComments = (text: string) => {
   return text.replace(/\/\*[\s\S]*?\*\//g, '')

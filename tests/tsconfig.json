@@ -18,6 +18,12 @@
     "esModuleInterop": true,
     "strict": true
   },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "replacers": {
+      "@/*": "./dist/types/*"
+    }
+  },
   "include": ["./**/*.ts", "../src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

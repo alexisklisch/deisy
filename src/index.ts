@@ -8,7 +8,7 @@ import type {
   ExportOptions,
   VariablesContext,
   Variant
-} from '@/types'
+} from '@/deisyTypes'
 
 class Deisy {
   #currentSrc: string = ''

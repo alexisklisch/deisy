@@ -1,4 +1,4 @@
-import type { Variant, VariablesContext } from '@/types'
+import type { Variant, VariablesContext } from '@/deisyTypes'
 import type { Node, parser } from '@/utils/parser'
 
 export interface OnNodePluginUtils {

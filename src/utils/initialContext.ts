@@ -1,7 +1,7 @@
 import { ExpressionNode, parser } from '@/utils/parser'
 import { tagRegex } from '@/utils/regex'
 import { evalExpression } from '@/utils/evalExpression'
-import type { DeisyConfig, VariablesContext } from '@/types'
+import type { DeisyConfig, VariablesContext } from '@/deisyTypes'
 
 export function assignInitialVars (initialSource: string, config: DeisyConfig, currentVariant: string | undefined) {
   let currentSource = initialSource

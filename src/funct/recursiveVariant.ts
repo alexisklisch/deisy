@@ -1,4 +1,4 @@
-import type { VariablesContext, Variant } from '@/types'
+import type { VariablesContext, Variant } from '@/deisyTypes'
 import { evalExpression } from '@/utils/evalExpression'
 import type { ExpressionNode, Node, TagNode } from '@/utils/parser'
 import type { Plugin } from '@/plugins'
