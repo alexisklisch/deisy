@@ -66,6 +66,7 @@ class Deisy {
         currentNodeIndex: undefined,
         variablesContext: this.#context,
         currentVariant: variant,
+        variants: this.#variants,
         plugins: this.config.plugins || []
       })
 

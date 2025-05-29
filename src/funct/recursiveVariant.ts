@@ -10,6 +10,7 @@ interface RecursiveVariant {
   currentNodeIndex?: number
   variablesContext: VariablesContext
   currentVariant: Variant
+  variants: Variant[]
   plugins: Plugin[]
 }
 
@@ -19,6 +20,7 @@ export const recursiveVariant = ({
   currentNodeIndex,
   currentVariant,
   variablesContext,
+  variants,
   plugins
 }: RecursiveVariant) => {
   // Procesar plugins primero
@@ -27,7 +29,7 @@ export const recursiveVariant = ({
       const result = plugin.onNode(currentNode, {
         variablesContext,
         currentVariant,
-        variants: [currentVariant], // TODO: Pasar todas las variantes disponibles
+        variants,
         parser
       })
 
@@ -66,6 +68,7 @@ export const recursiveVariant = ({
           currentNodeIndex: +key,
           variablesContext,
           currentVariant,
+          variants,
           plugins
         })
       }
@@ -93,6 +96,7 @@ export const recursiveVariant = ({
         currentNodeIndex: currentNodeIndex!,
         variablesContext,
         currentVariant,
+        variants,
         plugins
       })
     }
