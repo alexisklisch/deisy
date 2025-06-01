@@ -25,3 +25,4 @@ A powerful and extensible tool to parse XML/JSX-like templates, inject variables
 
 ### 0.2.0
 - [ ] Text renderer plugin
+- [ ] Manejar atributo style como un objeto

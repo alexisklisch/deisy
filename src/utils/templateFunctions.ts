@@ -1,3 +1,5 @@
+import { parser } from '@/utils/parser'
+
 // Objeto Variant que agrupa todas las funciones relacionadas con variantes
 export const Variant = {
   // Función principal para asignar valores basados en variante
@@ -38,3 +40,5 @@ export const Variant = {
     return (currentVariant?: string) => currentVariant || defaultVariant
   }
 }
+
+export const Parser = parser
