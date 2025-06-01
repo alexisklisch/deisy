@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import Deisy from '../src'
+import Deisy from '@/index'
 
 describe('Deisy: exists', () => {
   it('should be defined', () => {
@@ -26,8 +26,6 @@ describe('Deisy: basic', () => {
 
   it('should be defined', () => {
     const dsy = new Deisy(xml1, { variables: {} })
-    const exported = dsy.export({ format: 'json', variant: 'default' })
-    console.log(JSON.stringify(exported, null, 2))
     expect(dsy).toBeDefined()
   })
 })

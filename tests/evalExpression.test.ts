@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { evalExpression } from '../src/utils/evalExpression'
+import { parser, TagNode } from '@/utils/parser'
 
 describe('evalExpression: basic', () => {
   it('should return the correct value', () => {
@@ -65,5 +66,34 @@ describe('evalExpression: variants', () => {
       variables: ctx,
       currentVariant: 'formal'
     })).toBe('Estimado John')
+  })
+})
+
+describe('evalExpression: parser', () => {
+  it('should return the correct value', () => {
+    const object: TagNode = { type: 'tag', tag: 'rect', attr: { width: '100', height: '100', fill: 'red' }, child: [] }
+    expect(evalExpression({ expression: 'Parser.build([{ type: "tag", tag: "rect", attr: { width: "100", height: "100", fill: "red" }, child: [] }])', currentVariant: 'default' })).toBe(parser.build([object]))
+  })
+
+  it('should return the correct value', () => {
+    const object: TagNode = {
+      type: 'tag',
+      tag: 'circle',
+      attr: {
+        cx: String(1920 / 2),
+        cy: String(1080 / 2),
+        r: String(16 * 1.2),
+        fill: 'red',
+        opacity: String(0.4),
+        filter: 'url(#glowBlur)'
+      },
+      child: []
+    }
+    expect(evalExpression({ expression: 'Parser.build([{ type: "tag", tag: "rect", attr: { width: "100", height: "100", fill: "red" }, child: [] }])', currentVariant: 'default' })).toBe(parser.build([object]))
+  })
+
+  it('should return the correct value', () => {
+    const object: TagNode = { type: 'tag', tag: 'rect', attr: { width: '100', height: '100', fill: 'red' }, child: [] }
+    expect(evalExpression({ expression: 'Parser.build([{ type: "tag", tag: "rect", attr: { width: "100", height: "100", fill: "red" }, child: [] }])', currentVariant: 'default' })).toBe(parser.build([object]))
   })
 })
