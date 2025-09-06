@@ -1,6 +1,6 @@
 {
   "name": "deisy",
-  "version": "0.0.8",
+  "version": "0.0.17",
   "description": "A powerful and extensible tool to parse XML/JSX-like templates, inject variables, apply conditions, and manipulate document structure. Perfect for SVG magic ✨ — and who knows what else you’ll build! 🔌🧩",
   "type": "module",
   "sideEffects": false,
@@ -43,5 +43,5 @@
     "typescript": "5.8.2",
     "vitest": "3.1.1"
   },
-  "packageManager": "pnpm@10.7.0"
+  "packageManager": "pnpm@10.15.1"
 }

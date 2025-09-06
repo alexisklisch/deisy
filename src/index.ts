@@ -70,7 +70,7 @@ class Deisy {
         plugins: this.config.plugins || []
       })
 
-      return format === 'json' ? sourceParsed : parser.build([sourceParsed])
+      return format === 'ast' ? sourceParsed : parser.build([sourceParsed])
     })
 
     // If there is only one variant, return the result directly
@@ -79,3 +79,6 @@ class Deisy {
 }
 
 export default Deisy
+
+export type { DeisyConfig, ExportOptions, VariablesContext, Variant }
+export type { Plugin } from '@/plugins'
