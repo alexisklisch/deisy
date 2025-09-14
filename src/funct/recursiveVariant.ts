@@ -30,7 +30,8 @@ export const recursiveVariant = ({
         variablesContext,
         currentVariant,
         variants,
-        parser
+        parser,
+        evalExpression
       })
 
       if (result === undefined) {
