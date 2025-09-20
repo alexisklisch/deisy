@@ -82,4 +82,4 @@ export default Deisy
 
 export type { DeisyConfig, ExportOptions, VariablesContext, Variant }
 export type { Plugin } from '@/plugins'
-export type { Node, ExpressionNode, TagNode, TextNode } from '@/utils/parser'
+export type { Node, ExpressionNode, TagNode, TextNode, parser as Parser } from '@/utils/parser'
