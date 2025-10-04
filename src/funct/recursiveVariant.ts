@@ -1,8 +1,8 @@
-import type { VariablesContext, Variant } from '@/deisyTypes'
+import { parser } from '@/utils/parser'
 import { evalExpression } from '@/utils/evalExpression'
+import type { IsWaitingCollection, VariablesContext, Variant } from '@/deisyTypes'
 import type { ExpressionNode, Node, TagNode } from '@/utils/parser'
 import type { Plugin } from '@/plugins'
-import { parser } from '@/utils/parser'
 
 interface RecursiveVariant {
   currentNode: Node
@@ -12,6 +12,7 @@ interface RecursiveVariant {
   currentVariant: Variant
   variants: Variant[]
   plugins: Plugin[]
+  isWaitingCollection: IsWaitingCollection
 }
 
 export const recursiveVariant = ({
@@ -21,7 +22,8 @@ export const recursiveVariant = ({
   currentVariant,
   variablesContext,
   variants,
-  plugins
+  plugins,
+  isWaitingCollection
 }: RecursiveVariant) => {
   // Procesar plugins primero
   if (parentNode && currentNodeIndex !== undefined) {
@@ -49,6 +51,11 @@ export const recursiveVariant = ({
 
   if (typeof currentNode === 'object') {
     if (currentNode.type === 'tag') {
+      // Si el tag contiene el atributo isWaiting, agregar el nombre del tag a la colección de espera
+      if (currentNode.attr.isWaiting) {
+        isWaitingCollection[currentNode.attr.isWaiting as string] = [currentNode.attr.isWaiting as string]
+      }
+
       const elementAttrs: Record<string, string | ExpressionNode> = currentNode?.attr || {}
 
       if (elementAttrs) {
@@ -70,7 +77,8 @@ export const recursiveVariant = ({
           variablesContext,
           currentVariant,
           variants,
-          plugins
+          plugins,
+          isWaitingCollection
         })
       }
 
@@ -98,7 +106,8 @@ export const recursiveVariant = ({
         variablesContext,
         currentVariant,
         variants,
-        plugins
+        plugins,
+        isWaitingCollection
       })
     }
   }

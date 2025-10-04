@@ -91,9 +91,4 @@ describe('evalExpression: parser', () => {
     }
     expect(evalExpression({ expression: 'Parser.build([{ type: "tag", tag: "rect", attr: { width: "100", height: "100", fill: "red" }, child: [] }])', currentVariant: 'default' })).toBe(parser.build([object]))
   })
-
-  it('should return the correct value', () => {
-    const object: TagNode = { type: 'tag', tag: 'rect', attr: { width: '100', height: '100', fill: 'red' }, child: [] }
-    expect(evalExpression({ expression: 'Parser.build([{ type: "tag", tag: "rect", attr: { width: "100", height: "100", fill: "red" }, child: [] }])', currentVariant: 'default' })).toBe(parser.build([object]))
-  })
 })

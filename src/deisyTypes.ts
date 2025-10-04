@@ -17,3 +17,7 @@ export interface ExportOptions {
   format?: 'xml' | 'ast'
   variants?: Variant | Variant[]
 }
+
+export interface IsWaitingCollection {
+  [key: string]: string[]
+}

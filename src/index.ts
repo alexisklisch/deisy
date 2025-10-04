@@ -7,12 +7,14 @@ import type {
   DeisyConfig,
   ExportOptions,
   VariablesContext,
-  Variant
+  Variant,
+  IsWaitingCollection
 } from '@/deisyTypes'
 
 class Deisy {
   #currentSrc: string = ''
   #variants: Variant[] = []
+  #isWaitingCollection: IsWaitingCollection = {}
   #context: VariablesContext = { template: {}, user: {}, metadata: {} }
 
   constructor (
@@ -67,9 +69,10 @@ class Deisy {
         variablesContext: this.#context,
         currentVariant: variant,
         variants: this.#variants,
-        plugins: this.config.plugins || []
+        plugins: this.config.plugins || [],
+        isWaitingCollection: this.#isWaitingCollection
       })
-
+      console.log(this.#isWaitingCollection)
       return format === 'ast' ? sourceParsed : parser.build([sourceParsed])
     })
 
