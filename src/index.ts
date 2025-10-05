@@ -72,7 +72,7 @@ class Deisy {
         plugins: this.config.plugins || [],
         isWaitingCollection: this.#isWaitingCollection
       })
-      console.log(this.#isWaitingCollection)
+      console.log(this.#isWaitingCollection, 'isWaitingCollection')
       return format === 'ast' ? sourceParsed : parser.build([sourceParsed])
     })
 

@@ -19,7 +19,7 @@ describe('Deisy: basic', () => {
   <separator />
 
   <data>
-    <column name="name" value="John" />
+    <column waitFor="culo" name="name" value="John" />
     <column name="age" value={1 + 1} />
   </data>
 </xml>`

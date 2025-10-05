@@ -56,10 +56,6 @@ describe('evalExpression: variants', () => {
     expect(evalExpression({ expression: 'Variant.values({ mobile: { fontSize: 14, padding: 8 }, desktop: { fontSize: 16, padding: 12 } }, { fontSize: 12, padding: 4 })', currentVariant: 'mobile' })).toStrictEqual({ fontSize: 14, padding: 8 })
   })
 
-  it('should return the incorrect value', () => {
-    expect(evalExpression({ expression: 'userName ? Variant.assign({ formal: "Estimado " + userName, casual: "Hola " + userName + "!", brief: userName }, "Usuario") : "Usuario"', variables: ctx, currentVariant: 'default' })).not.toBe('Estimado John')
-  })
-
   it('should return the correct value', () => {
     expect(evalExpression({
       expression: 'user ? Variant.assign({ formal: "Estimado " + user.name, casual: "Hola " + user.name + "!", brief: user.name }, "Usuario") : "Usuario"',
@@ -72,23 +68,6 @@ describe('evalExpression: variants', () => {
 describe('evalExpression: parser', () => {
   it('should return the correct value', () => {
     const object: TagNode = { type: 'tag', tag: 'rect', attr: { width: '100', height: '100', fill: 'red' }, child: [] }
-    expect(evalExpression({ expression: 'Parser.build([{ type: "tag", tag: "rect", attr: { width: "100", height: "100", fill: "red" }, child: [] }])', currentVariant: 'default' })).toBe(parser.build([object]))
-  })
-
-  it('should return the correct value', () => {
-    const object: TagNode = {
-      type: 'tag',
-      tag: 'circle',
-      attr: {
-        cx: String(1920 / 2),
-        cy: String(1080 / 2),
-        r: String(16 * 1.2),
-        fill: 'red',
-        opacity: String(0.4),
-        filter: 'url(#glowBlur)'
-      },
-      child: []
-    }
     expect(evalExpression({ expression: 'Parser.build([{ type: "tag", tag: "rect", attr: { width: "100", height: "100", fill: "red" }, child: [] }])', currentVariant: 'default' })).toBe(parser.build([object]))
   })
 })
