@@ -11,7 +11,7 @@ export type TextNode = {
 export type TagNode = {
   type: 'tag'
   tag: string
-  attr: Record<string, string | ExpressionNode>
+  attr: Record<string, string | ExpressionNode >
   child: Node[]
 }
 

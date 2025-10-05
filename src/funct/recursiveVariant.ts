@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import { parser } from '@/utils/parser'
 import { evalExpression } from '@/utils/evalExpression'
 import type { IsWaitingCollection, VariablesContext, Variant } from '@/deisyTypes'
@@ -53,7 +54,9 @@ export const recursiveVariant = ({
     if (currentNode.type === 'tag') {
       // Si el tag contiene el atributo isWaiting, agregar el nombre del tag a la colección de espera
       if (currentNode.attr.isWaiting) {
-        isWaitingCollection[currentNode.attr.isWaiting as string] = [currentNode.attr.isWaiting as string]
+        console.log('ACA -> ', currentNode.attr.isWaiting)
+        isWaitingCollection[currentNode.attr.isWaiting] = false
+        currentNode.attr = { ...currentNode.attr, waitingID: randomUUID() }
       }
 
       const elementAttrs: Record<string, string | ExpressionNode> = currentNode?.attr || {}
